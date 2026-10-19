@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xingyi Zheng (郑幸怡)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Merriweather:wght@700&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme">🌛</button>
+            <div class="profile-info">
+                <h1>Xingyi Zheng <span class="chinese-name">(郑幸怡)</span></h1>
+                <div class="subtitle-row">
+                    <p class="subtitle"><b>⚡ Energy &amp; Environmental Systems Engineering Student</b></p>
+                    <p class="collaboration-note"><b>You are welcomed to reach out!</b></p>
+                </div>
+                <p><span class="icon">📞</span> Tel: (+86) 15325713010</p>
+                <p><span class="icon">✉️</span> Email: <a href="mailto:1781181527@qq.com">1781181527@qq.com</a></p>
+                <p><span class="icon">💬</span> WeChat: TBD</p>
+                <div class="links">
+                    <a href="https://github.com/1781181527-crypto" target="_blank" class="button">🐱 GitHub</a>
+                    <a href="#" target="_blank" class="button">🔗 LinkedIn</a>
+                    <a href="files/resume.pdf" target="_blank" class="button">📄 Resume</a>
+                    <a href="files/undergraduate transcript.pdf" target="_blank" class="button">📝 Undergraduate Transcript</a>
+                </div>
+            </div>
+            <div class="carousel-group">
+                <div class="carousel-container carousel-landscape" tabindex="0" role="region" aria-label="Landscape photo carousel">
+                    <img src="images/photo1.jpg" class="carousel-image active" alt="Xingyi Zheng Landscape Photo 1">
+                    <img src="images/photo3.jpg" class="carousel-image" alt="Xingyi Zheng Landscape Photo 2">
+                    <img src="images/photo5.jpg" class="carousel-image" alt="Xingyi Zheng Landscape Photo 3">
+                    <button class="prev" type="button" aria-label="Previous landscape photo">&#10094;</button>
+                    <button class="next" type="button" aria-label="Next landscape photo">&#10095;</button>
+                </div>
+                <div class="carousel-container carousel-portrait" tabindex="0" role="region" aria-label="Portrait photo carousel">
+                    <img src="images/photo2.jpg" class="carousel-image active" alt="Xingyi Zheng Portrait Photo 1">
+                    <img src="images/photo4.jpg" class="carousel-image" alt="Xingyi Zheng Portrait Photo 2">
+                    <img src="images/photo6.jpg" class="carousel-image" alt="Xingyi Zheng Portrait Photo 3">
+                    <button class="prev" type="button" aria-label="Previous portrait photo">&#10094;</button>
+                    <button class="next" type="button" aria-label="Next portrait photo">&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        function changeSlide(container, direction) {
+            const slides = container.querySelectorAll('.carousel-image');
+            const current = slides.findIndex((slide) => slide.classList.contains('active'));
+            slides[current].classList.remove('active');
+            slides[current].setAttribute('aria-hidden', 'true');
+            const next = (current + direction + slides.length) % slides.length;
+            slides[next].classList.add('active');
+            slides[next].setAttribute('aria-hidden', 'false');
+        }
+
+        document.querySelectorAll('.carousel-container').forEach((container) => {
+            container.querySelector('.prev').addEventListener('click', () => changeSlide(container, -1));
+            container.querySelector('.next').addEventListener('click', () => changeSlide(container, 1));
+
+            container.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    changeSlide(container, event.key === 'ArrowLeft' ? -1 : 1);
+                }
+            });
+
+            container.querySelectorAll('.carousel-image').forEach((slide, index) => {
+                slide.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
+            });
+        });
+
+        const themeToggle = document.getElementById('theme-toggle');
+
+        function updateThemeControl() {
+            const isDark = document.documentElement.classList.contains('dark-theme');
+            themeToggle.textContent = isDark ? '🌞' : '🌛';
+            themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+        }
+
+        try {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        } catch (error) {
+            // The page remains fully usable when storage is unavailable.
+        }
+        updateThemeControl();
+
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark-theme');
+            const isDark = document.documentElement.classList.contains('dark-theme');
+            updateThemeControl();
+            try {
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            } catch (error) {
+                // Ignore storage errors without interrupting the theme switch.
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+        });
+    </script>
+    
+    <section class="intro">
+        <div class="container">
+            <p>
+                I am Xingyi Zheng, an undergraduate student majoring in Energy and Environmental Systems Engineering at the <a href="https://www.zju.edu.cn/" target="_blank">Zhejiang University</a> <a href="http://www.doe.zju.edu.cn/" target="_blank">College of Energy Engineering</a>, with a GPA of 4.33/5.0 (ranked 12/76). My research focuses on integrated energy systems, energy storage, and the application of AI to energy engineering. I prefer to explore, learn, and create things from scratch, rather than relying solely on pre-made solutions.
+            </p>
+            <p>
+                As a member of Prof. <b>Xiaojie Lin</b>'s group at the Institute of Thermal Science and Power Systems, I have led research on AI-driven optimization of integrated energy systems, combining deep reinforcement learning with multi-energy coupling simulation. I have also worked on vertical-axis wind turbine multi-energy complementary systems with Prof. <b>Yingchun Wu</b>, lithium-ion battery thermal conductivity with Prof. <b>Liwei Fan</b>, and battery electrochemistry with Prof. <b>Yuxuan Xiang</b> at Westlake University.
+            </p>
+            <p>
+                My research interests lie primarily at the intersection of energy systems and artificial intelligence. Currently, I focus on deep reinforcement learning for integrated energy system optimization, multi-energy complementary system design, and battery thermal management. I am dedicated to acquiring knowledge from diverse subfields to expand my expertise and exploring the possibilities of bridging energy engineering with data-driven methods.
+            </p>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>🎓 Education</h2>
+                <div class="education-item">
+                    <div class="education-header">
+                        <div class="details">
+                            <h3>Zhejiang University (ZJU)</h3>
+                            <p>B.E. in Energy and Environmental Systems Engineering (<a href="http://www.doe.zju.edu.cn/" target="_blank">College of Energy Engineering</a>)</p>
+                            <p class="date">09/2023 - Present</p>
+                        </div>
+                        <div class="education-info">
+                            <p><strong>GPA:</strong> 4.33/5.0</p>
+                            <p><strong>Ranking:</strong> 12/76</p>
+                        </div>
+                        <div class="education-introduction">
+                            <p><b>Key Courses</b>: Engineering Fluid Mechanics (96), Automatic Control Theory (93), Combustion Theory (92), Heat Transfer (91), Boiler Principles (89)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>🔬 Research/Work Experience</h2>
+                <div class="experience-item">
+                    <div class="details-with-logo">
+                        <h3>
+                            <img src="images/ZJU.png" alt="Zhejiang University" class="logo">
+                            AI Algorithm Optimization of Integrated Energy Systems
+                        </h3>
+                        <p>Institute of Thermal Science and Power Systems, Zhejiang University</p>
+                        <p>Advisor: Prof. Xiaojie Lin</p>
+                        <p class="date">05/2025 - 05/2026</p>
+                    </div>
+
+                    <div class="content">
+                        <ul>
+                            <li>Led research on replacing traditional optimizers with deep reinforcement learning (DRL): built an electricity-cooling multi-energy coupling simulation platform based on Python and the oemof.solph framework.</li>
+                            <li>Designed the state-action-reward space and introduced the SAC algorithm for model-free online optimization, approaching the global optimum of Gurobi linear programming after 3,000 training iterations (objective value 94.95), validating the strong generalization potential of deep learning in energy systems.</li>
+                            <li>Applied for a national invention patent as the first inventor (a physics-informed decoupled multi-agent reinforcement learning collaborative optimization method and system for industrial parks, submitted and pending acceptance).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="details-with-logo">
+                        <h3>
+                            <img src="images/ZJU.png" alt="Zhejiang University" class="logo">
+                            Vertical-Axis Wind Turbine Multi-Energy Complementary System Optimization
+                        </h3>
+                        <p>Institute of Thermal Energy Engineering, Zhejiang University</p>
+                        <p>Advisor: Prof. Yingchun Wu</p>
+                        <p class="date">12/2025 - 06/2026</p>
+                    </div>
+
+                    <div class="content">
+                        <ul>
+                            <li>Led the design of a multi-energy flow coupling system: built a wind-solar-thermal integrated multi-energy complementary system based on an H-type vertical-axis wind turbine, completing system modeling, physical construction, and simulation validation.</li>
+                            <li>Achieved spatial reuse by integrating photovoltaics on the blades, constructing a multi-energy coupling architecture incorporating wind turbines, photovoltaics, thermal storage, and electrical storage.</li>
+                            <li>Established an integrated multi-physics simulation model using MATLAB/Simulink, conducted thermal-optical-mechanical coupling simulation and parameter optimization via COMSOL and TracePro, and achieved approximately 3.6% power generation gain from wind-solar coupling.</li>
+                            <li>Accepted invention patent: a photothermal-thermal coupling main-shaft structure and power generation device based on dynamic-static dual concentration and phase-change thermal storage (Application No. 202610688681.8, 4th inventor, accepted 2026.05 / substantive examination 2026.07).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="details-with-logo">
+                        <h3>
+                            <img src="images/ZJU.png" alt="Zhejiang University" class="logo">
+                            Thermal Conductivity of Pouch Lithium-Ion Batteries
+                        </h3>
+                        <p>Institute of Thermal Science and Power Systems, Zhejiang University</p>
+                        <p>Advisor: Prof. Liwei Fan</p>
+                        <p class="date">12/2024 - 09/2026</p>
+                    </div>
+
+                    <div class="content">
+                        <ul>
+                            <li>Independently designed an integrated anisotropic thermal conductivity test platform, combined with finite element numerical simulation (FEM) to optimize and correct heating/cooling boundary conditions, and constructed a battery electrochemical-thermal multi-physics coupling simulation model for cross-validation of simulation and experimental data.</li>
+                            <li>Systematically conducted multi-factor coupling experiments (temperature × SOC × charge/discharge rate) and established a dynamic evolution database of anisotropic thermal parameters for pouch batteries, providing key physical constraints and high-quality training datasets for data-driven battery thermal state monitoring and thermal runaway early warning.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="details-with-logo">
+                        <h3>
+                            <img src="images/WestlakeU.png" alt="Westlake University" class="logo">
+                            Electrochemical Mechanism of Energy Storage Batteries
+                        </h3>
+                        <p>Advanced Characterization Laboratory for Energy Materials, Westlake University</p>
+                        <p>Advisor: Prof. Yuxuan Xiang</p>
+                        <p class="date">07/2025 - 09/2025</p>
+                    </div>
+
+                    <div class="content">
+                        <ul>
+                            <li>Systematically studied the electrochemical principles and characterization methods of lithium-ion batteries, mastering cyclic voltammetry (CV), electrochemical impedance spectroscopy (EIS), and other testing techniques.</li>
+                            <li>Independently completed the full assembly process of coin cells (electrolyte preparation, coating, pressing, disassembly), and studied the influence of modified electrolyte formulations on battery cycle efficiency and capacity.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>🏆 Awards</h2>
+                <ul class="awards-list">
+                    <li><span class="award-description"><a href="https://www.moe.gov.cn/" target="_blank">National College Student Energy Conservation and Emission Reduction Social Practice and Technology Competition</a> Second Prize 🥈</span><span class="date">08/2026</span></li>
+                    <li><span class="award-description"><a href="https://www.moe.gov.cn/" target="_blank">Zhejiang Provincial International College Student Innovation Competition</a> Bronze Medal 🥉</span><span class="date">08/2025</span></li>
+                    <li><span class="award-description"><a href="https://www.comap.com/" target="_blank">Mathematical Contest in Modeling (MCM/ICM)</a> Honorable Mention</span><span class="date">05/2025</span></li>
+                    <li><span class="award-description"><a href="https://www.zju.edu.cn/" target="_blank">Zhejiang University</a> Second-class, Third-class Scholarships, and Hangzhou Oxygen Scholarship</span><span class="date">2024 - 2026</span></li>
+                    <li><span class="award-description"><a href="https://www.zju.edu.cn/" target="_blank">Zhejiang Provincial Youth Campus Football League</a> (University Women's Group) Third Place 🥉</span><span class="date">05/2024</span></li>
+                    <li><span class="award-description"><a href="https://www.zju.edu.cn/" target="_blank">Zhejiang University</a> Academic Excellence / Innovation &amp; Entrepreneurship / Social Work / Sports &amp; Arts Model Student</span><span class="date">2023 - 2025</span></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>📚 Patents</h2>
+                <div class="papers-item">
+                    <div class="details">
+                        <h3>A Physics-Informed Decoupled Multi-Agent Reinforcement Learning Collaborative Optimization Method and System for Industrial Parks</h3>
+                        <p>National Invention Patent (First Inventor). Submitted and pending acceptance.</p>
+                    </div>
+                    <div class="content">
+                        <ul>
+                            <li>Proposes embedding heterogeneous physical laws of electricity and heat separately into each agent to address the heterogeneous coupling of multi-energy flows, with a coupling-feasible-domain coordination mechanism and boundary risk adaptive constraint strategy, achieving zero constraint violation at coupling nodes.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="papers-item">
+                    <div class="details">
+                        <h3>A Photothermal-Thermal Coupling Main-Shaft Structure and Power Generation Device Based on Dynamic-Static Dual Concentration and Phase-Change Thermal Storage</h3>
+                        <p>Accepted Invention Patent. Application No. 202610688681.8 (4th Inventor). Accepted 05/2026, Substantive Examination 07/2026.</p>
+                    </div>
+                    <div class="content">
+                        <ul>
+                            <li>A photothermal-thermal coupling main-shaft structure integrating dynamic-static dual concentration and phase-change thermal storage for enhanced power generation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>🛠️ Skills</h2>
+                <ul class="skills-list">
+                    <li><strong>Programming &amp; AI:</strong> Python (NumPy/Pandas/Matplotlib), PyTorch (Basic), Genetic Algorithms, Reinforcement Learning (SAC)</li>
+                    <li><strong>Modeling &amp; Simulation:</strong> MATLAB/Simulink, COMSOL Multiphysics, TracePro, oemof.solph</li>
+                    <li><strong>Experimental Skills:</strong> Thermophysical Property Measurement, Battery Assembly and Testing</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>🤝 Extracurricular &amp; Volunteer Activities</h2>
+                <div class="activity-item">
+                    <div class="details">
+                        <h3>Class Monitor, Thermal Energy 2302</h3>
+                        <p>University-level Outstanding League Cadre</p>
+                        <p class="date">2023 - Present</p>
+                    </div>
+                    <div class="content">
+                        <ul>
+                            <li>Served as class monitor of Thermal Energy 2302 and received the university-level Outstanding League Cadre honor.</li>
+                            <li>Member of the Zhejiang University Football Association (Membership Department), College of Energy Engineering Student Union (Sports &amp; Culture Department), and Youth Development Center (Organization &amp; Training Department).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="details">
+                        <h3>Zhejiang University Women's Football Team</h3>
+                        <p>Forward / Winger; College Team Captain</p>
+                        <p class="date">2023 - Present</p>
+                    </div>
+                    <div class="content">
+                        <ul>
+                            <li>Member of the university women's football team (forward/winger) and captain of the college women's football team.</li>
+                            <li>Won the college Chuneng Cup football championship and 7th place in the university Sanhao Cup football competition.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <b>Volunteer Hours: 405.31h ⏳ (Five-star Volunteer, Zhejiang University Youth Volunteer Service)</b>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Xingyi Zheng. All rights reserved. Original content available in the <a href="https://github.com/1781181527-crypto/1781181527-crypto.github.io" target="_blank">website repository</a>.</p>
+            <p>Check out a game I wrote: <a href="game.html">Click the Ball Game 🎮</a>.</p>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="track-visitors.js"></script>
+</body>
+</html>
